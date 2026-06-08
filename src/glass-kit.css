@@ -1,7 +1,7 @@
-/* glasskit — the small bit of CSS the components need (hover reveal, icon shadow,
+/* glass-kit — the small bit of CSS the components need (hover reveal, icon shadow,
    and two optional animations). Import once anywhere in your app:
 
-     import "glasskit/styles.css"
+     import "glass-kit/styles.css"
 
    Everything else is inline, so the package needs no Tailwind / utility CSS. */
 

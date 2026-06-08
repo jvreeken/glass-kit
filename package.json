@@ -1,5 +1,5 @@
 {
-  "name": "glasskit",
+  "name": "glass-kit",
   "version": "0.1.0",
   "description": "Liquid-glass UI for React — a refracting glass surface for any control, plus a scroll cue, a global light source (with device-tilt), and a live tuner. One API, automatic per-platform render paths (backdrop-filter + SVG, captured-canvas, or a WebGL video lens).",
   "keywords": [
@@ -18,10 +18,10 @@
   "author": "James Vreeken <jamesvreeken@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jvreeken/glasskit.git"
+    "url": "git+https://github.com/jvreeken/glass-kit.git"
   },
-  "homepage": "https://github.com/jvreeken/glasskit#readme",
-  "bugs": "https://github.com/jvreeken/glasskit/issues",
+  "homepage": "https://github.com/jvreeken/glass-kit#readme",
+  "bugs": "https://github.com/jvreeken/glass-kit/issues",
   "type": "module",
   "sideEffects": [
     "**/*.css"
@@ -37,7 +37,7 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./styles.css": "./dist/glasskit.css"
+    "./styles.css": "./dist/glass-kit.css"
   },
   "scripts": {
     "build": "tsup && node scripts/postbuild.mjs",

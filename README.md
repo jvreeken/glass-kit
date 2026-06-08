@@ -1,4 +1,4 @@
-# glasskit
+# glass-kit
 
 Liquid-glass UI for React — a refracting "glass" surface you can drop into any
 control, plus a bouncing scroll cue, a global light source (with optional
@@ -16,14 +16,14 @@ actually refracts everywhere:
 Zero styling dependencies — no Tailwind required. Just import one small CSS file.
 
 ```bash
-npm i glasskit
+npm i glass-kit
 ```
 
 ## Quick start
 
 ```tsx
-import { GlassSurface } from "glasskit"
-import "glasskit/styles.css" // once, anywhere in your app
+import { GlassSurface } from "glass-kit"
+import "glass-kit/styles.css" // once, anywhere in your app
 
 export function GlassButton({ children, onClick }) {
   return (
@@ -95,7 +95,7 @@ you're adjusting. Hit **copy preset** to grab the JSON and paste it into
 `GLASS_PRESETS`.
 
 ```tsx
-import { GlassTunerProvider } from "glasskit"
+import { GlassTunerProvider } from "glass-kit"
 // <GlassTunerProvider>{app}</GlassTunerProvider>
 ```
 
@@ -112,7 +112,7 @@ in `GlassLightProvider` to control it:
   rim at once. Fired on load and on any button/link click.
 
 ```tsx
-import { GlassLightProvider } from "glasskit"
+import { GlassLightProvider } from "glass-kit"
 // <GlassLightProvider>{app}</GlassLightProvider>
 ```
 
@@ -125,7 +125,7 @@ A bouncing, glass scroll-down button. `targetId` smooth-scrolls to an element, o
 pass `onClick`. Takes a `preset` like `GlassSurface`.
 
 ```tsx
-import { ScrollCue } from "glasskit"
+import { ScrollCue } from "glass-kit"
 <ScrollCue targetId="content" label="Scroll to content" />
 ```
 
@@ -144,7 +144,7 @@ markers make it work; all are plain attributes you add to your own elements:
   the scene; tag a full-screen overlay (open menu/modal) `data-glass-occluder` so a
   standalone lens frosts instead of refracting the hidden video while it's up.
 
-## CSS helpers (from `glasskit/styles.css`)
+## CSS helpers (from `glass-kit/styles.css`)
 
 - `glass-control` — put on the host control to enable `reveal`.
 - `glass-icon` — a dark drop-shadow so a light icon stays legible over the glass.

@@ -4,7 +4,7 @@
 // directive while bundling, so it can't be a tsup `banner`; we add it here.
 import { readFileSync, writeFileSync, copyFileSync } from "node:fs"
 
-copyFileSync("src/glasskit.css", "dist/glasskit.css")
+copyFileSync("src/glass-kit.css", "dist/glass-kit.css")
 
 const file = "dist/index.js"
 const code = readFileSync(file, "utf8")

@@ -1,147 +1,178 @@
-import type { CSSProperties, ReactNode } from "react"
-import {
-  GlassSurface,
-  ScrollCue,
-  GlassLightProvider,
-  GlassTunerProvider,
-  type GlassPresetName,
-} from "glass-kit"
+import type { CSSProperties } from "react"
+import { GlassLightProvider, GlassTunerProvider } from "glass-kit"
 import "glass-kit/styles.css"
+import { Header } from "./Header"
+import { Hero } from "./Hero"
 
-const circle: CSSProperties = {
-  position: "relative",
-  display: "grid",
-  placeItems: "center",
-  width: 64,
-  height: 64,
-  overflow: "hidden",
-  borderRadius: 9999,
-  border: 0,
-  background: "transparent",
-  cursor: "pointer",
-}
-
-function GlassButton({
-  preset,
-  children,
-}: {
-  preset: GlassPresetName
-  children: ReactNode
-}) {
-  return (
-    <button className="glass-control" style={circle} aria-label={preset}>
-      <GlassSurface preset={preset} reveal />
-      <span
-        className="glass-icon"
-        style={{ position: "relative", color: "#fff", fontSize: 24 }}
-      >
-        {children}
-      </span>
-    </button>
-  )
-}
+const FEATURES = [
+  [
+    "Refracts anything",
+    "Drop <GlassSurface/> into any rounded, overflow-hidden control and it bends whatever sits behind — photos, gradients, UI, or live video.",
+  ],
+  [
+    "Every browser",
+    "Three render paths chosen automatically: backdrop-filter + SVG on Chromium, a captured canvas on Safari/Firefox over stills, and a WebGL lens over playing video everywhere.",
+  ],
+  [
+    "Global light",
+    "One specular light angle for the whole UI — drive it from device tilt, or fire a 360° shimmer sweep on load and on any tap.",
+  ],
+  [
+    "Zero deps · MIT",
+    "No Tailwind, no runtime deps beyond React. One small CSS file. Tune any look live with Shift+G and copy the JSON.",
+  ],
+]
 
 export function App() {
   return (
     <GlassLightProvider>
       <GlassTunerProvider>
-        <main
+        <Header />
+        <Hero />
+
+        <section
+          id="about"
           style={{
-            minHeight: "100vh",
-            display: "grid",
-            placeItems: "center",
-            position: "relative",
-            overflow: "hidden",
+            background: "#eceef4",
+            color: "#15151f",
             fontFamily: "system-ui, -apple-system, sans-serif",
-            color: "#fff",
-            background:
-              "radial-gradient(60rem 40rem at 18% 20%, #ff5e7e 0%, transparent 55%)," +
-              "radial-gradient(50rem 50rem at 82% 18%, #3bc9db 0%, transparent 50%)," +
-              "radial-gradient(50rem 40rem at 70% 92%, #ffd43b 0%, transparent 55%)," +
-              "radial-gradient(60rem 50rem at 25% 95%, #845ef7 0%, transparent 55%)," +
-              "linear-gradient(135deg, #10122a, #1d1340)",
+            padding: "96px 24px 120px",
           }}
         >
-          {/* Big background type for the glass to refract over. */}
-          <h1
-            aria-hidden
-            style={{
-              position: "absolute",
-              inset: 0,
-              display: "grid",
-              placeItems: "center",
-              margin: 0,
-              fontSize: "clamp(4rem, 22vw, 18rem)",
-              fontWeight: 800,
-              letterSpacing: "-0.04em",
-              color: "rgba(255,255,255,0.10)",
-              userSelect: "none",
-              pointerEvents: "none",
-            }}
-          >
-            glass-kit
-          </h1>
-
-          <div
-            style={{
-              position: "relative",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: 40,
-              padding: 24,
-            }}
-          >
-            {/* A glass pane (plaque preset). */}
-            <div
-              className="glass-control"
+          <div style={{ maxWidth: 880, margin: "0 auto" }}>
+            <p
               style={{
-                position: "relative",
-                overflow: "hidden",
-                borderRadius: 20,
-                padding: "26px 34px",
-                textAlign: "center",
+                margin: 0,
+                fontSize: 12,
+                letterSpacing: "0.25em",
+                textTransform: "uppercase",
+                color: "#6b6b86",
               }}
             >
-              <GlassSurface preset="plaque" radius={20} reveal />
-              <div style={{ position: "relative" }}>
+              The glass above is the package
+            </p>
+            <h2
+              style={{
+                margin: "10px 0 0",
+                fontSize: "clamp(2rem, 5vw, 3.2rem)",
+                fontWeight: 700,
+                letterSpacing: "-0.02em",
+                lineHeight: 1.05,
+              }}
+            >
+              Liquid glass for React, in one component.
+            </h2>
+            <p
+              style={{
+                marginTop: 18,
+                fontSize: 18,
+                lineHeight: 1.6,
+                color: "#3c3c4e",
+                maxWidth: 640,
+              }}
+            >
+              Everything on this page — the menu button refracting the video, the
+              slideshow arrows, the pill, the scroll cue — is{" "}
+              <code style={code}>glass-kit</code>. This demo is the README brought
+              to life; its source lives in <code style={code}>examples/demo</code>.
+            </p>
+
+            <pre style={pre}>
+              <code>npm i glass-kit</code>
+            </pre>
+
+            <div
+              style={{
+                marginTop: 48,
+                display: "grid",
+                gap: 20,
+                gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+              }}
+            >
+              {FEATURES.map(([title, body]) => (
                 <div
+                  key={title}
                   style={{
-                    fontSize: 12,
-                    letterSpacing: "0.25em",
-                    textTransform: "uppercase",
-                    opacity: 0.8,
+                    background: "#fff",
+                    borderRadius: 16,
+                    padding: 22,
+                    boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
                   }}
                 >
-                  Liquid glass for React
+                  <h3 style={{ margin: 0, fontSize: 17, fontWeight: 700 }}>
+                    {title}
+                  </h3>
+                  <p
+                    style={{
+                      margin: "8px 0 0",
+                      fontSize: 14.5,
+                      lineHeight: 1.55,
+                      color: "#4a4a5e",
+                    }}
+                  >
+                    {body}
+                  </p>
                 </div>
-                <div style={{ fontSize: 30, fontWeight: 700, marginTop: 6 }}>
-                  Refracts anything behind it
-                </div>
-              </div>
+              ))}
             </div>
 
-            {/* Glass control buttons — one per preset. */}
-            <div style={{ display: "flex", gap: 18 }}>
-              <GlassButton preset="hero">✦</GlassButton>
-              <GlassButton preset="portfolio">→</GlassButton>
-              <GlassButton preset="plaque">◎</GlassButton>
+            <div style={{ marginTop: 44, display: "flex", gap: 14, flexWrap: "wrap" }}>
+              <a href="https://github.com/jvreeken/glass-kit" style={btnDark}>
+                GitHub →
+              </a>
+              <a href="https://www.npmjs.com/package/glass-kit" style={btnLight}>
+                npm
+              </a>
+              <span style={{ alignSelf: "center", color: "#6b6b86", fontSize: 14 }}>
+                Press <kbd style={kbd}>Shift</kbd>+<kbd style={kbd}>G</kbd> to tune
+                the glass.
+              </span>
             </div>
-
-            <p style={{ opacity: 0.75, fontSize: 14, margin: 0 }}>
-              Press <kbd>Shift</kbd>+<kbd>G</kbd> to open the tuner. Hover a
-              control for the reveal.
-            </p>
           </div>
-
-          <ScrollCue
-            onClick={() => {}}
-            label="Scroll"
-            preset="portfolio"
-            className="glass-in"
-          />
-        </main>
+        </section>
       </GlassTunerProvider>
     </GlassLightProvider>
   )
+}
+
+const code: CSSProperties = {
+  background: "rgba(0,0,0,0.06)",
+  borderRadius: 5,
+  padding: "1px 6px",
+  fontSize: "0.9em",
+}
+const pre: CSSProperties = {
+  marginTop: 22,
+  background: "#15151f",
+  color: "#e7e7f0",
+  borderRadius: 12,
+  padding: "16px 20px",
+  fontSize: 15,
+  overflowX: "auto",
+}
+const btnDark: CSSProperties = {
+  background: "#15151f",
+  color: "#fff",
+  textDecoration: "none",
+  padding: "12px 22px",
+  borderRadius: 9999,
+  fontWeight: 600,
+  fontSize: 15,
+}
+const btnLight: CSSProperties = {
+  background: "#fff",
+  color: "#15151f",
+  textDecoration: "none",
+  padding: "12px 22px",
+  borderRadius: 9999,
+  fontWeight: 600,
+  fontSize: 15,
+  border: "1px solid rgba(0,0,0,0.12)",
+}
+const kbd: CSSProperties = {
+  background: "#fff",
+  border: "1px solid rgba(0,0,0,0.15)",
+  borderRadius: 5,
+  padding: "1px 6px",
+  fontSize: 12,
 }

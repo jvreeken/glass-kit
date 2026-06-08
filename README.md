@@ -2,10 +2,14 @@
 
 [![CI](https://github.com/jvreeken/glass-lens-react/actions/workflows/ci.yml/badge.svg)](https://github.com/jvreeken/glass-lens-react/actions/workflows/ci.yml)
 [![npm](https://img.shields.io/npm/v/glass-lens-react.svg)](https://www.npmjs.com/package/glass-lens-react)
+[![demo](https://img.shields.io/badge/demo-live-7c3aed)](https://glass-lens-react.vercel.app)
 
 Liquid-glass UI for React — a refracting "glass" surface you can drop into any
 control, plus a bouncing scroll cue, a global light source (with optional
 device-tilt + a shimmer sweep), and a live tuner.
+
+**→ [Live demo](https://glass-lens-react.vercel.app)** — best on Chromium: glass
+over playing video, photos, gradients, and patterns, with the tuner built in.
 
 One API, **three render paths chosen automatically per platform** so the glass
 actually refracts everywhere:
@@ -22,8 +26,9 @@ Zero styling dependencies — no Tailwind required. Just import one small CSS fi
 npm i glass-lens-react
 ```
 
-> **Demo:** `cd examples/demo && pnpm install && pnpm dev` for a runnable
-> showcase (and a quick smoke test of the package source).
+> **Demo:** see it live at **<https://glass-lens-react.vercel.app>**, or run it
+> yourself with `cd examples/demo && pnpm install && pnpm dev` (a runnable
+> showcase and a quick smoke test of the package source).
 
 ## Quick start
 

@@ -1,0 +1,68 @@
+/* glasskit — the small bit of CSS the components need (hover reveal, icon shadow,
+   and two optional animations). Import once anywhere in your app:
+
+     import "glasskit/styles.css"
+
+   Everything else is inline, so the package needs no Tailwind / utility CSS. */
+
+/* Hover/focus/active "reveal": a brightness lift in front of the glass that
+   samples the rendered lens. Put `glass-control` on the control (button) and pass
+   `reveal` to <GlassSurface/> — it renders the <span class="glass-reveal">. */
+.glass-reveal {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  backdrop-filter: brightness(1.5);
+  -webkit-backdrop-filter: brightness(1.5);
+  transition: opacity 300ms ease-out;
+}
+.glass-control:hover .glass-reveal,
+.glass-control:focus-visible .glass-reveal,
+.glass-control:active .glass-reveal {
+  opacity: 1;
+}
+
+/* A crisp dark outline for an icon sitting over the glass, so a light icon stays
+   legible even when the lens refracts a bright area of the backdrop. */
+.glass-icon {
+  filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.7))
+    drop-shadow(0 0 2.5px rgba(0, 0, 0, 0.35));
+}
+
+/* Fade a control in on first paint, so the brief moment before its lens / backdrop
+   is ready is never seen as a flash. `both` holds opacity:0 before it starts. */
+@keyframes glassIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.glass-in {
+  animation: glassIn 0.5s ease-out both;
+}
+
+/* The bouncing scroll cue (used by <ScrollCue/>). */
+@keyframes glassBounce {
+  0%,
+  100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+.glass-bounce {
+  animation: glassBounce 1s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glass-in,
+  .glass-bounce {
+    animation: none !important;
+  }
+}

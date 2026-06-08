@@ -1,0 +1,58 @@
+{
+  "name": "glasskit",
+  "version": "0.1.0",
+  "description": "Liquid-glass UI for React — a refracting glass surface for any control, plus a scroll cue, a global light source (with device-tilt), and a live tuner. One API, automatic per-platform render paths (backdrop-filter + SVG, captured-canvas, or a WebGL video lens).",
+  "keywords": [
+    "react",
+    "liquid-glass",
+    "glassmorphism",
+    "glass",
+    "backdrop-filter",
+    "webgl",
+    "svg-filter",
+    "refraction",
+    "ui",
+    "components"
+  ],
+  "license": "MIT",
+  "author": "James Vreeken <jamesvreeken@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jvreeken/glasskit.git"
+  },
+  "homepage": "https://github.com/jvreeken/glasskit#readme",
+  "bugs": "https://github.com/jvreeken/glasskit/issues",
+  "type": "module",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles.css": "./dist/glasskit.css"
+  },
+  "scripts": {
+    "build": "tsup && node scripts/postbuild.mjs",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "react": "^19.0.0",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.0"
+  }
+}

@@ -317,6 +317,16 @@ export function GlassSurface({
   const selfCanvasRef = useRef<HTMLCanvasElement>(null)
   const selfRenderer = useRef<ReturnType<typeof createGlassRenderer>>(null)
   const id = "glass" + useId().replace(/[:]/g, "")
+  // SSR safety: SVG_BACKDROP is read from `navigator` — false during server render,
+  // true in Chromium — so using it directly makes the server pick the canvas path
+  // and the client the backdrop-filter path, a hydration mismatch. Gate it behind a
+  // mount flag so the server and the FIRST client render agree (both take the
+  // canvas path); the effect then swaps in the real path, hidden by the glass-in
+  // fade. (Effects below keep using SVG_BACKDROP directly — they only run client-
+  // side, after mount, so there's nothing to mismatch.)
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => setMounted(true), [])
+  const svgBackdrop = mounted && SVG_BACKDROP
   const margin = SVG_BACKDROP ? 0 : Math.ceil(scaleV / 2) + 6
   const [map, setMap] = useState<{ url: string; w: number; h: number } | null>(
     null,
@@ -496,7 +506,7 @@ export function GlassSurface({
 
   const base = `blur(${blurV}px) saturate(${satV})`
   const filterStr = map ? `${base} url(#${id})` : base
-  const canvasMode = !SVG_BACKDROP && refractV && canvasActive
+  const canvasMode = !svgBackdrop && refractV && canvasActive
   // Transparent body = no backdrop-filter. lensMode controls get their refraction
   // from the hero's renderer. Standalone controls are ALWAYS transparent: backdrop-
   // filter is exactly what goes black over video on Safari (the load flash) and what
@@ -534,13 +544,13 @@ export function GlassSurface({
           ? undefined
           : canvasMode
             ? undefined
-            : SVG_BACKDROP && map
+            : svgBackdrop && map
               ? filterStr
               : base,
         WebkitBackdropFilter: transparent || canvasMode ? undefined : base,
       }}
     >
-      {!SVG_BACKDROP && refractV && !lensMode && !selfLens && (
+      {!svgBackdrop && refractV && !lensMode && !selfLens && (
         <canvas
           ref={canvasRef}
           // Only apply the displacement filter once a backdrop was actually

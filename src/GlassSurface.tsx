@@ -603,6 +603,12 @@ export function GlassSurface({
             {dispersionV > 0 ? (
               // Chromatic aberration: displace R/G/B by slightly different amounts
               // and recombine, so the rim refraction splits into coloured fringes.
+              // The per-channel matrices keep ONE colour channel and PRESERVE the
+              // source alpha (last row `0 0 0 1 0`). Forcing alpha to 1 instead made
+              // the rim's out-of-bounds (transparent) samples composite to opaque
+              // black — fine on the canvas path (opaque capture) but a solid black
+              // disc on Chromium's backdrop-filter, where the rim oversamples past
+              // the backdrop. Preserving alpha lets those samples stay transparent.
               <>
                 <feDisplacementMap
                   in="SourceGraphic"
@@ -615,7 +621,7 @@ export function GlassSurface({
                 <feColorMatrix
                   in="dr"
                   type="matrix"
-                  values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0 1"
+                  values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0"
                   result="cr"
                 />
                 <feDisplacementMap
@@ -629,7 +635,7 @@ export function GlassSurface({
                 <feColorMatrix
                   in="dg"
                   type="matrix"
-                  values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 0 1"
+                  values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0"
                   result="cg"
                 />
                 <feDisplacementMap
@@ -643,7 +649,7 @@ export function GlassSurface({
                 <feColorMatrix
                   in="db"
                   type="matrix"
-                  values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 0 1"
+                  values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0"
                   result="cb"
                 />
                 <feComposite

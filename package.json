@@ -18,10 +18,10 @@
   "author": "James Vreeken <jamesvreeken@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jvreeken/glass-kit.git"
+    "url": "git+https://github.com/jvreeken/glass-lens-react.git"
   },
-  "homepage": "https://github.com/jvreeken/glass-kit#readme",
-  "bugs": "https://github.com/jvreeken/glass-kit/issues",
+  "homepage": "https://github.com/jvreeken/glass-lens-react#readme",
+  "bugs": "https://github.com/jvreeken/glass-lens-react/issues",
   "type": "module",
   "sideEffects": [
     "**/*.css"

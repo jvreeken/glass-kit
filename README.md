@@ -1,6 +1,6 @@
 # glass-lens-react
 
-[![CI](https://github.com/jvreeken/glass-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/jvreeken/glass-kit/actions/workflows/ci.yml)
+[![CI](https://github.com/jvreeken/glass-lens-react/actions/workflows/ci.yml/badge.svg)](https://github.com/jvreeken/glass-lens-react/actions/workflows/ci.yml)
 [![npm](https://img.shields.io/npm/v/glass-lens-react.svg)](https://www.npmjs.com/package/glass-lens-react)
 
 Liquid-glass UI for React — a refracting "glass" surface you can drop into any

@@ -2,9 +2,9 @@ import { useEffect, useState, type CSSProperties } from "react"
 import { GlassSurface } from "glass-lens-react"
 
 const NAV = [
-  { label: "GitHub", href: "https://github.com/jvreeken/glass-kit" },
+  { label: "GitHub", href: "https://github.com/jvreeken/glass-lens-react" },
   { label: "npm", href: "https://www.npmjs.com/package/glass-lens-react" },
-  { label: "Demo source", href: "https://github.com/jvreeken/glass-kit/tree/main/examples/demo" },
+  { label: "Demo source", href: "https://github.com/jvreeken/glass-lens-react/tree/main/examples/demo" },
 ]
 
 export function Header() {
@@ -60,7 +60,7 @@ export function Header() {
           }}
         >
           <a
-            href="https://github.com/jvreeken/glass-kit"
+            href="https://github.com/jvreeken/glass-lens-react"
             style={{
               fontWeight: 800,
               fontSize: 20,

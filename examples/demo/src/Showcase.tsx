@@ -568,7 +568,7 @@ export function Showcase() {
               flexWrap: "wrap",
             }}
           >
-            <a href="https://github.com/jvreeken/glass-kit" style={btnLight}>
+            <a href="https://github.com/jvreeken/glass-lens-react" style={btnLight}>
               GitHub →
             </a>
             <a href="https://www.npmjs.com/package/glass-lens-react" style={btnGhost}>

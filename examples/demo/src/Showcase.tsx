@@ -548,7 +548,7 @@ export function Showcase() {
       <Section bg="#11121d" fg="#fff">
         <div style={{ textAlign: "center" }}>
           <h2 style={{ ...h2Style, fontSize: "clamp(2rem, 6vw, 3.4rem)" }}>
-            glass<span style={{ opacity: 0.5 }}>-kit</span>
+            glass-lens<span style={{ opacity: 0.5 }}>-react</span>
           </h2>
           <p
             style={{

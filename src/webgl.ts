@@ -77,6 +77,11 @@ export type GlassRendererParams = {
   curve: number // rim ramp exponent
   thickness: number // convex lensing across the surface
   dispersion: number // chromatic aberration amount
+  // The shader refracts but doesn't frost, so blur/saturate ride along as a CSS
+  // filter on the lens canvas — that's the only way these two looks reach the
+  // WebGL path (over live video). Optional; omitted ⇒ no frost (0 / 1).
+  blur?: number // canvas blur, px
+  saturate?: number // canvas saturate multiplier
 }
 
 type Media = HTMLVideoElement | HTMLImageElement
@@ -273,6 +278,15 @@ export function createGlassRenderer(
   let cssW = 0
   let cssH = 0
   let live: GlassRendererParams = params
+  // blur/saturate aren't shader uniforms — they're a CSS filter on the canvas the
+  // lens draws into, so the same two looks work over video as over a still.
+  const applyFilter = () => {
+    const b = live.blur ?? 0
+    const s = live.saturate ?? 1
+    canvas.style.filter =
+      b > 0 || s !== 1 ? `blur(${b}px) saturate(${s})` : ""
+  }
+  applyFilter()
   const mediaHost = opts?.mediaHost ?? hero
   const lensesOf =
     opts?.lenses ??
@@ -408,6 +422,7 @@ export function createGlassRenderer(
   const api = {
     setParams(p: GlassRendererParams) {
       live = p
+      applyFilter()
     },
     // Pump one frame by hand (for environments where rAF doesn't fire — tests).
     render: frame,

@@ -88,6 +88,8 @@ export function Hero() {
       curve: p.curve,
       thickness: p.thickness,
       dispersion: p.dispersion,
+      blur: p.blur,
+      saturate: p.saturate,
     })
     rendererRef.current = r
     return () => {
@@ -105,6 +107,8 @@ export function Hero() {
       curve: p.curve,
       thickness: p.thickness,
       dispersion: p.dispersion,
+      blur: p.blur,
+      saturate: p.saturate,
     })
   }, [tuner, webglOn])
 

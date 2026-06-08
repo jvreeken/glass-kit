@@ -343,6 +343,8 @@ export function GlassSurface({
         curve: curveV,
         thickness: thicknessV,
         dispersion: dispersionV,
+        blur: blurV,
+        saturate: satV,
       },
       { standalone: true, lenses: () => [host], onActive: setOverVideo },
     )
@@ -361,8 +363,10 @@ export function GlassSurface({
       curve: curveV,
       thickness: thicknessV,
       dispersion: dispersionV,
+      blur: blurV,
+      saturate: satV,
     })
-  }, [scaleV, bezelV, curveV, thicknessV, dispersionV])
+  }, [scaleV, bezelV, curveV, thicknessV, dispersionV, blurV, satV])
 
   // Build the displacement map sized to the filtered element (the span on
   // Chromium, the larger canvas on the capture path).

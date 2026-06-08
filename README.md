@@ -1,5 +1,8 @@
 # glass-kit
 
+[![CI](https://github.com/jvreeken/glass-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/jvreeken/glass-kit/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/glass-kit.svg)](https://www.npmjs.com/package/glass-kit)
+
 Liquid-glass UI for React — a refracting "glass" surface you can drop into any
 control, plus a bouncing scroll cue, a global light source (with optional
 device-tilt + a shimmer sweep), and a live tuner.
@@ -18,6 +21,9 @@ Zero styling dependencies — no Tailwind required. Just import one small CSS fi
 ```bash
 npm i glass-kit
 ```
+
+> **Demo:** `cd examples/demo && pnpm install && pnpm dev` for a runnable
+> showcase (and a quick smoke test of the package source).
 
 ## Quick start
 

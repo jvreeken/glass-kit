@@ -15,24 +15,22 @@ import {
   useGlassTuner,
 } from "glass-kit"
 
-// Abstract, license-free loops generated with ffmpeg (same-origin so the WebGL
-// texture isn't tainted). Swap in your own — anything in /public works.
+// Each `base` resolves to `${base}.av1.mp4` (AV1), `${base}.mp4` (H.264 fallback)
+// and `${base}.jpg` (poster). They're same-origin so the WebGL texture isn't
+// tainted. Swap in your own — anything in /public works.
 const SLIDES = [
   {
-    video: "/videos/clip-1.mp4",
-    poster: "/videos/clip-1.jpg",
+    base: "/videos/video-1",
     kicker: "Liquid glass for React",
     title: "Refracts whatever's behind it",
   },
   {
-    video: "/videos/clip-2.mp4",
-    poster: "/videos/clip-2.jpg",
+    base: "/videos/video-2",
     kicker: "One API · every browser",
     title: "Even over playing video",
   },
   {
-    video: "/videos/clip-3.mp4",
-    poster: "/videos/clip-3.jpg",
+    base: "/videos/video-3",
     kicker: "Zero styling deps · MIT",
     title: "npm i glass-kit",
   },
@@ -125,7 +123,7 @@ export function Hero() {
           const active = i === index
           return (
             <div
-              key={s.video}
+              key={s.base}
               data-hero-active={active ? "" : undefined}
               style={{
                 ...cover,
@@ -137,19 +135,26 @@ export function Hero() {
               {/* A real <img> behind the clip gives the lens something to refract
                   until the video decodes (the lens path can't texture a poster
                   attribute). */}
-              {webglOn && <img src={s.poster} alt="" aria-hidden style={cover} />}
+              {webglOn && (
+                <img src={`${s.base}.jpg`} alt="" aria-hidden style={cover} />
+              )}
               <video
                 ref={(el) => {
                   videoRefs.current[i] = el
                 }}
-                src={s.video}
-                poster={s.poster}
+                poster={`${s.base}.jpg`}
                 muted
                 loop
                 playsInline
                 preload="auto"
                 style={cover}
-              />
+              >
+                <source
+                  src={`${s.base}.av1.mp4`}
+                  type='video/mp4; codecs="av01.0.05M.08"'
+                />
+                <source src={`${s.base}.mp4`} type="video/mp4" />
+              </video>
             </div>
           )
         })}
@@ -265,7 +270,7 @@ export function Hero() {
             <GlassSurface preset="hero" />
             {SLIDES.map((s, i) => (
               <button
-                key={s.video}
+                key={s.base}
                 type="button"
                 aria-label={`Slide ${i + 1}`}
                 onClick={() => go(i)}

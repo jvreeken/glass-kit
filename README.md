@@ -105,6 +105,9 @@ import { GlassTunerProvider } from "glass-kit"
 // <GlassTunerProvider>{app}</GlassTunerProvider>
 ```
 
+Open it from your own UI (a settings button, say) with
+`useGlassTunerControl()?.setOpen(true)`.
+
 ## Light source — global, tilt, shimmer
 
 The specular highlight's direction is a single **global** angle. Wrap your app once

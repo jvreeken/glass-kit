@@ -2,11 +2,16 @@
 
 import {
   useEffect,
+  useMemo,
   useState,
   type CSSProperties,
   type ReactNode,
 } from "react"
-import { GlassTunerCtx, type GlassTunerState } from "./context"
+import {
+  GlassTunerCtx,
+  GlassTunerControlCtx,
+  type GlassTunerState,
+} from "./context"
 import {
   GLASS_PRESETS,
   GLASS_PRESET_META,
@@ -146,20 +151,26 @@ export function GlassTunerProvider({ children }: { children: ReactNode }) {
   const value: GlassTunerState | null = active
     ? { params, selected, showHighlight }
     : null
+  const control = useMemo(
+    () => ({ open: active, setOpen: setActive }),
+    [active],
+  )
 
   return (
-    <GlassTunerCtx.Provider value={value}>
-      {children}
-      {active && (
-        <Panel
-          selected={selected}
-          setSelected={setSelected}
-          params={params}
-          setParams={setParams}
-          onClose={() => setActive(false)}
-        />
-      )}
-    </GlassTunerCtx.Provider>
+    <GlassTunerControlCtx.Provider value={control}>
+      <GlassTunerCtx.Provider value={value}>
+        {children}
+        {active && (
+          <Panel
+            selected={selected}
+            setSelected={setSelected}
+            params={params}
+            setParams={setParams}
+            onClose={() => setActive(false)}
+          />
+        )}
+      </GlassTunerCtx.Provider>
+    </GlassTunerControlCtx.Provider>
   )
 }
 

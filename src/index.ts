@@ -35,7 +35,9 @@ export {
   GlassLensCtx,
   useInLensHero,
   useGlassTuner,
+  useGlassTunerControl,
   type GlassTunerState,
+  type GlassTunerControl,
 } from "./context"
 export { SVG_BACKDROP, WEBGL_VIDEO, FORCE_CANVAS, FORCE_WEBGL } from "./env"
 export {

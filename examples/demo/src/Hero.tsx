@@ -13,6 +13,7 @@ import {
   GLASS_PRESETS,
   createGlassRenderer,
   useGlassTuner,
+  useGlassTunerControl,
 } from "glass-kit"
 
 // Each `base` resolves to `${base}.av1.mp4` (AV1), `${base}.mp4` (H.264 fallback)
@@ -53,6 +54,7 @@ export function Hero() {
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
   const rendererRef = useRef<ReturnType<typeof createGlassRenderer>>(null)
   const tuner = useGlassTuner()
+  const tunerCtl = useGlassTunerControl()
 
   useEffect(() => setMounted(true), [])
 
@@ -112,12 +114,9 @@ export function Hero() {
     <GlassLensCtx.Provider value={webglOn}>
       <section
         ref={sectionRef}
-        style={{
-          position: "relative",
-          height: "100svh",
-          overflow: "hidden",
-          background: "#0b0b16",
-        }}
+        // No bg here: the dark fallback lives on <body>, so the caption pane's
+        // standalone lens doesn't mistake an opaque ancestor for an occluder.
+        style={{ position: "relative", height: "100svh", overflow: "hidden" }}
       >
         {SLIDES.map((s, i) => {
           const active = i === index
@@ -184,7 +183,9 @@ export function Hero() {
           />
         )}
 
-        {/* Caption */}
+        {/* Caption — contained in a "Pane" (plaque) glass surface. It's opted OUT
+            of the hero's shared lens (GlassLensCtx=false) so it draws its OWN plaque
+            lens over the video — tweakable live via the tuner's "Pane" sliders. */}
         <div
           style={{
             position: "absolute",
@@ -192,35 +193,77 @@ export function Hero() {
             zIndex: 25,
             display: "grid",
             placeItems: "center",
-            textAlign: "center",
-            color: "#fff",
             padding: 24,
             pointerEvents: "none",
             fontFamily: "system-ui, -apple-system, sans-serif",
           }}
         >
-          <div>
+          <GlassLensCtx.Provider value={false}>
             <div
               style={{
-                fontSize: 13,
-                letterSpacing: "0.28em",
-                textTransform: "uppercase",
-                opacity: 0.85,
+                position: "relative",
+                pointerEvents: "auto",
+                overflow: "hidden",
+                borderRadius: 18,
+                padding: "30px 40px 28px",
+                maxWidth: 560,
+                textAlign: "center",
               }}
             >
-              {SLIDES[index].kicker}
+              <GlassSurface preset="plaque" standalone radius={18} />
+              <div
+                style={{
+                  position: "relative",
+                  color: "#fff",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: 20,
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      fontSize: 13,
+                      letterSpacing: "0.28em",
+                      textTransform: "uppercase",
+                      opacity: 0.85,
+                    }}
+                  >
+                    {SLIDES[index].kicker}
+                  </div>
+                  <div
+                    style={{
+                      fontSize: "clamp(1.7rem, 5vw, 3.4rem)",
+                      fontWeight: 300,
+                      marginTop: 10,
+                      textWrap: "balance",
+                    }}
+                  >
+                    {SLIDES[index].title}
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => tunerCtl?.setOpen(true)}
+                  style={{
+                    cursor: "pointer",
+                    border: "1px solid rgba(255,255,255,0.6)",
+                    background: "rgba(255,255,255,0.12)",
+                    color: "#fff",
+                    borderRadius: 9999,
+                    padding: "9px 22px",
+                    fontSize: 12,
+                    fontWeight: 600,
+                    letterSpacing: "0.18em",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  Settings
+                </button>
+              </div>
             </div>
-            <div
-              style={{
-                fontSize: "clamp(2rem, 6vw, 4rem)",
-                fontWeight: 300,
-                marginTop: 10,
-                textWrap: "balance",
-              }}
-            >
-              {SLIDES[index].title}
-            </div>
-          </div>
+          </GlassLensCtx.Provider>
         </div>
 
         {/* Prev / next — in-hero glass controls (lens-mode over the video). */}

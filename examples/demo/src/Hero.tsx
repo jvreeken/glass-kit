@@ -191,9 +191,11 @@ export function Hero() {
             position: "absolute",
             inset: 0,
             zIndex: 25,
-            display: "grid",
-            placeItems: "center",
-            padding: 24,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            // Stay clear of the prev/next arrows (which sit ~64px in from each edge).
+            padding: "24px clamp(84px, 11vw, 160px)",
             pointerEvents: "none",
             fontFamily: "system-ui, -apple-system, sans-serif",
           }}
@@ -206,7 +208,7 @@ export function Hero() {
                 overflow: "hidden",
                 borderRadius: 18,
                 padding: "30px 40px 28px",
-                maxWidth: 560,
+                maxWidth: 520,
                 textAlign: "center",
               }}
             >

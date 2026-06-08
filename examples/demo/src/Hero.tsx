@@ -14,7 +14,7 @@ import {
   createGlassRenderer,
   useGlassTuner,
   useGlassTunerControl,
-} from "glass-kit"
+} from "glass-lens-react"
 
 // Each `base` resolves to `${base}.av1.mp4` (AV1), `${base}.mp4` (H.264 fallback)
 // and `${base}.jpg` (poster). They're same-origin so the WebGL texture isn't
@@ -33,7 +33,7 @@ const SLIDES = [
   {
     base: "/videos/video-3",
     kicker: "Zero styling deps · MIT",
-    title: "npm i glass-kit",
+    title: "npm i glass-lens-react",
   },
 ]
 
@@ -77,7 +77,7 @@ export function Hero() {
   // a texture and draws a lens for every in-hero `.glass-lens` control (the arrows,
   // pill and scroll cue below switch to lens-mode via GlassLensCtx). This is the
   // pattern for refracting LIVE video — backdrop-filter over a playing <video>
-  // goes black, so glass-kit reads the pixels in a shader instead.
+  // goes black, so glass-lens-react reads the pixels in a shader instead.
   const webglOn = mounted && WEBGL_VIDEO
   useEffect(() => {
     if (!webglOn || !glCanvasRef.current || !sectionRef.current) return

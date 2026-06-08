@@ -1,7 +1,7 @@
-// glass-kit — liquid-glass UI for React.
+// glass-lens-react — liquid-glass UI for React.
 //
-//   import { GlassSurface, ScrollCue, GlassLightProvider } from "glass-kit"
-//   import "glass-kit/styles.css"   // once, anywhere in your app
+//   import { GlassSurface, ScrollCue, GlassLightProvider } from "glass-lens-react"
+//   import "glass-lens-react/styles.css"   // once, anywhere in your app
 //
 //   <button className="gk-group" style={{ position: "relative", display: "grid",
 //       placeItems: "center", width: 44, height: 44, overflow: "hidden",

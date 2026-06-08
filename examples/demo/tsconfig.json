@@ -10,8 +10,8 @@
     "skipLibCheck": true,
     "noEmit": true,
     "paths": {
-      "glass-kit": ["../../src/index.ts"],
-      "glass-kit/styles.css": ["../../src/glass-kit.css"]
+      "glass-lens-react": ["../../src/index.ts"],
+      "glass-lens-react/styles.css": ["../../src/glass-kit.css"]
     }
   },
   "include": ["src", "vite.config.ts"]

@@ -1,9 +1,9 @@
 import { useEffect, useState, type CSSProperties } from "react"
-import { GlassSurface } from "glass-kit"
+import { GlassSurface } from "glass-lens-react"
 
 const NAV = [
   { label: "GitHub", href: "https://github.com/jvreeken/glass-kit" },
-  { label: "npm", href: "https://www.npmjs.com/package/glass-kit" },
+  { label: "npm", href: "https://www.npmjs.com/package/glass-lens-react" },
   { label: "Demo source", href: "https://github.com/jvreeken/glass-kit/tree/main/examples/demo" },
 ]
 
@@ -70,7 +70,7 @@ export function Header() {
               transition: "color 300ms",
             }}
           >
-            glass<span style={{ opacity: 0.55 }}>-kit</span>
+            glass-lens<span style={{ opacity: 0.55 }}>-react</span>
           </a>
 
           <button
@@ -141,7 +141,7 @@ export function Header() {
               letterSpacing: "0.05em",
             }}
           >
-            npm i glass-kit
+            npm i glass-lens-react
           </code>
         </nav>
       </div>

@@ -1,5 +1,5 @@
 {
-  "name": "glass-kit",
+  "name": "glass-lens-react",
   "version": "0.1.0",
   "description": "Liquid-glass UI for React — a refracting glass surface for any control, plus a scroll cue, a global light source (with device-tilt), and a live tuner. One API, automatic per-platform render paths (backdrop-filter + SVG, captured-canvas, or a WebGL video lens).",
   "keywords": [

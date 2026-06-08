@@ -1,5 +1,5 @@
 import type { CSSProperties, ReactNode } from "react"
-import { GlassSurface, type GlassPresetName } from "glass-kit"
+import { GlassSurface, type GlassPresetName } from "glass-lens-react"
 
 /* ------------------------------------------------------------------ helpers */
 
@@ -254,11 +254,11 @@ export function Showcase() {
         <p style={leadStyle}>
           Everything on this page — the menu button refracting the video, the
           slideshow arrows, the pane, the scroll cue, and every tile below — is{" "}
-          <code style={codeInline}>glass-kit</code>. This page is the README brought
+          <code style={codeInline}>glass-lens-react</code>. This page is the README brought
           to life; its source lives in{" "}
           <code style={codeInline}>examples/demo</code>.
         </p>
-        <Code>npm i glass-kit</Code>
+        <Code>npm i glass-lens-react</Code>
 
         <div
           style={{
@@ -389,7 +389,7 @@ export function Showcase() {
         <p style={kickerStyle}>Refracts everywhere</p>
         <h2 style={h2Style}>One API, three render paths</h2>
         <p style={leadStyle}>
-          glass-kit picks the right technique per platform automatically — you just
+          glass-lens-react picks the right technique per platform automatically — you just
           render <code style={codeInline}>&lt;GlassSurface/&gt;</code>.
         </p>
         <div
@@ -571,7 +571,7 @@ export function Showcase() {
             <a href="https://github.com/jvreeken/glass-kit" style={btnLight}>
               GitHub →
             </a>
-            <a href="https://www.npmjs.com/package/glass-kit" style={btnGhost}>
+            <a href="https://www.npmjs.com/package/glass-lens-react" style={btnGhost}>
               npm
             </a>
           </div>
@@ -585,8 +585,8 @@ export function Showcase() {
   )
 }
 
-const QUICKSTART = `import { GlassSurface } from "glass-kit"
-import "glass-kit/styles.css"
+const QUICKSTART = `import { GlassSurface } from "glass-lens-react"
+import "glass-lens-react/styles.css"
 
 <button className="glass-control" style={{
   position: "relative", display: "grid", placeItems: "center",
